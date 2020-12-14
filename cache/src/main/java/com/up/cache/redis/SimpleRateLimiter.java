@@ -1,4 +1,4 @@
-package com.codedigger.up.redis;
+package com.up.cache.redis;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Pipeline;

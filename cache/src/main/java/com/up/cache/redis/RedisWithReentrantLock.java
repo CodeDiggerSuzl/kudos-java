@@ -1,4 +1,4 @@
-package com.codedigger.up.redis;
+package com.up.cache.redis;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.params.SetParams;
@@ -14,8 +14,9 @@ import java.util.Map;
  */
 public class RedisWithReentrantLock {
 
-    private final Jedis                             jedis;
-    private       ThreadLocal<Map<String, Integer>> lockers = new ThreadLocal<>();
+    private final Jedis jedis;
+
+    private ThreadLocal<Map<String, Integer>> lockers = new ThreadLocal<>();
 
     public RedisWithReentrantLock(Jedis jedis) {
         this.jedis = jedis;

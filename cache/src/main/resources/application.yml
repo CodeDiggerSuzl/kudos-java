@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/daily_test?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    #    url: r-wz9483ced1d9f9c4.redis.rds.aliyuncs.com
+    username: root
+    password: Xmqx2018*
+  redis:
+    database: 0
+    host: r-wz9483ced1d9f9c4.redis.rds.aliyuncs.com
+    port: 6379
+    timeout: 5000
+    password: Xmqx2018*
+
+    jedis:
+      pool:
+        max-idle: 8
+        max-active: 8
+        max-wait: -1
+
+yueyue:
+  redis:
+    key.prefix: test

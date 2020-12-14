@@ -1,4 +1,4 @@
-package com.codedigger.up.redis;
+package com.up.cache.redis;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;

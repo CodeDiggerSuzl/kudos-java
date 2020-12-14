@@ -1,4 +1,4 @@
-package com.codedigger.up.redis;
+package com.up.cache.redis;
 
 import java.util.HashMap;
 import java.util.Map;

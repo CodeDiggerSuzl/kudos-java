@@ -13,9 +13,9 @@ public class MapTest {
     public void hashMapTest() {
         HashMap<String, String> map = new HashMap<>();
         map.put("hah", "1");
-        map.put(null, null);
-        map.put(null, "aa");
-        map.get(null);
+        String put = map.put(null, null);
+        String aa = map.put(null, "aa");
+        String s = map.get(null);
 
     }
 }
