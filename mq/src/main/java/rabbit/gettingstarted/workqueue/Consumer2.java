@@ -1,12 +1,11 @@
 package rabbit.gettingstarted.workqueue;
 
-import rabbit.gettingstarted.RabbitMqUtils;
 import com.rabbitmq.client.*;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import rabbit.gettingstarted.RabbitMqUtils;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Suz1
@@ -26,7 +25,7 @@ public class Consumer2 {
             @SneakyThrows
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-                TimeUnit.SECONDS.sleep(2);
+                // TimeUnit.SECONDS.sleep(2);
                 System.out.println("consumer--2 get message:" + new String(body));
                 channel.basicAck(envelope.getDeliveryTag(), false);
             }
