@@ -12,7 +12,7 @@ import rocketmq.constant.ConfigConst;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 十事务性消息生产者
+ * 事务性消息生产者
  *
  * @author Suz1
  * @date 2020/12/20 6:02 下午
@@ -40,7 +40,7 @@ public class Producer {
             }
 
             /**
-             * 该方法 mq 进行消息事务状态的回查
+             * 该方法 mq 进行对消息事务状态的回查
              */
             @Override
             public LocalTransactionState checkLocalTransaction(MessageExt msg) {
