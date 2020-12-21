@@ -21,8 +21,12 @@ public class BigDecimalTest {
 
     @Test
     public void addTest() {
-        BigDecimal bigDecimal = BigDecimal.valueOf(0.110D);
-        BigDecimal add = bigDecimal.add(BigDecimal.valueOf(1.33D));
+        BigDecimal bigDecimal = BigDecimal.valueOf(0.1D);
+        BigDecimal b2 = BigDecimal.valueOf(1.3D);
+        BigDecimal add = bigDecimal.add(b2);
         System.out.println(add);
+        BigDecimal subtract = b2.subtract(bigDecimal);
+        System.out.println(subtract);
+
     }
 }

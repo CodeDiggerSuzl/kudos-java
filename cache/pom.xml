@@ -11,7 +11,11 @@
 
     <artifactId>cache</artifactId>
     <dependencies>
-      
+        <dependency>
+            <groupId>com.yueyue</groupId>
+            <artifactId>finance-admin-interface</artifactId>
+            <version>4.17.0-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 
