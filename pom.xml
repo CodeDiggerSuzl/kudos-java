@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>bml-code-rush</module>
         <module>rpc</module>
         <module>nio-netty</module>
         <module>spring-family</module>

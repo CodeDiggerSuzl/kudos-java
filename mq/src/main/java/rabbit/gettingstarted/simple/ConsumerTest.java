@@ -58,7 +58,7 @@ public class ConsumerTest {
             // 重写方法 param1:  最后一个参数: 消息队列的参数
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) {
-                log.info("得到的消息:{}", new String(body));
+                // log.info("得到的消息:{}", new String(body));
             }
         });
         // 不关闭一直监听
