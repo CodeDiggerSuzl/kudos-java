@@ -23,7 +23,6 @@ public class OnewayProducer {
         for (int i = 0; i < 10; i++) {
             // 4. 创建消息对象，指定主题 topic tag 和消息体
             Message message = new Message("test_topic_name", "tag_name_1", ("oneway_msg, No_" + i).getBytes());
-            // System.out.println(JSON.toJSONString(message, true));
             // 5. 发送消息
             producer.sendOneway(message);
         }

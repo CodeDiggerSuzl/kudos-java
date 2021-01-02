@@ -1,12 +1,12 @@
 package springboot.controller;
 
-import springboot.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springboot.service.TestService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/test")
 @Scope("prototype")
-public class ControllerTest {
+public class AppController {
     @Autowired
     private TestService testService;
 
@@ -41,7 +41,6 @@ public class ControllerTest {
      */
     @GetMapping("/testCache/{id}")
     public String testCache(@PathVariable int id) {
-
         return testService.testCache("str", id);
     }
 

@@ -1,0 +1,11 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: spring-all
+  datasource:
+    url: jdbc:mysql://39.103.66.26:3306/db_order_pay?useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: Suz1@mysql
+

@@ -1,8 +1,9 @@
-package springboot.service;
+package springboot.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import springboot.service.TestService;
 
 /**
  * spring cache 的策略: 和 spring 事务一样
