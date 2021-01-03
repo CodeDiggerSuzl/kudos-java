@@ -1,7 +1,8 @@
-package com.suzl.basic.encryption;
+package com.suzl.basic.encryption_safty;
 
 import org.junit.Test;
 
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -27,6 +28,9 @@ public class UrlTest {
     public void urlEncodeTest() {
         String encoded = URLEncoder.encode("中文!", StandardCharsets.UTF_8);
         System.out.println(encoded);
+
+        String decoded = URLDecoder.decode("%E4%B8%AD%E6%96%87%21", StandardCharsets.UTF_8);
+        System.out.println("decoded = " + decoded);
     }
 
     @Test

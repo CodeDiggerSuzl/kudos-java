@@ -31,10 +31,9 @@ public class Minute2HourTest {
         return String.valueOf(v);
     }
 
-    public Integer hour2Min(String hour) {
+    public void hour2Min(String hour) {
         BigDecimal hour2 = BigDecimal.valueOf(Double.parseDouble(hour));
         BigDecimal multiply = hour2.multiply(BigDecimal.valueOf(60.00D));
         System.out.println(multiply.intValue());
-        return multiply.intValue();
     }
 }

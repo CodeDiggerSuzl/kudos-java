@@ -1,4 +1,4 @@
-package com.suzl;
+package com.suzl.basic;
 
 import org.junit.Test;
 
