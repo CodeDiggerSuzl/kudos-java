@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * 4、用户名字母倒着排序
  * 5、只输出一个用户！
  *
- * @author suzl
+ * @author com.suzl
  */
 public class StreamTest {
 

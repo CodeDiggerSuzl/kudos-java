@@ -12,25 +12,25 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 @Configuration
 public class RedisConfig {
-    @Value("${spring.redis.host}")
+    @Value("${com.suzl.allspring.spring.redis.host}")
     private String host;
 
-    @Value("${spring.redis.port}")
+    @Value("${com.suzl.allspring.spring.redis.port}")
     private int port;
 
-    @Value("${spring.redis.timeout}")
+    @Value("${com.suzl.allspring.spring.redis.timeout}")
     private int timeout;
 
-    @Value("${spring.redis.jedis.pool.max-idle}")
+    @Value("${com.suzl.allspring.spring.redis.jedis.pool.max-idle}")
     private int maxIdle;
 
-    @Value("${spring.redis.jedis.pool.max-wait}")
+    @Value("${com.suzl.allspring.spring.redis.jedis.pool.max-wait}")
     private long maxWaitMillis;
 
-    @Value("${spring.redis.password}")
+    @Value("${com.suzl.allspring.spring.redis.password}")
     private String password;
 
-    @Value("${spring.redis.database}")
+    @Value("${com.suzl.allspring.spring.redis.database}")
     private int database;
 
     @Bean

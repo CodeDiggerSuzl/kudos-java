@@ -42,7 +42,7 @@ public class FileTest {
 
     @Test
     public void dirTest() {
-        File f = new File("/Users/suzailong/dev/java-spring-all");
+        File f = new File("/Users/suzailong/dev/java-com.com.suzl.allspring.spring-all");
         File[] fs1 = f.listFiles();
         printFiles(fs1);
         // 仅列出.exe文件
