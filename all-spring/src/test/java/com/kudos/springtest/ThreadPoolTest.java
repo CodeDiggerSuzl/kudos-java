@@ -1,5 +1,6 @@
-package com.kudos;
+package com.kudos.springtest;
 
+import com.kudos.SpringAllApp;
 import com.kudos.utils.IdWorker;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,7 @@ import java.io.IOException;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringAllApp.class)
-public class SpringTest {
+public class ThreadPoolTest {
     @Autowired
     private IdWorker idWorker;
 

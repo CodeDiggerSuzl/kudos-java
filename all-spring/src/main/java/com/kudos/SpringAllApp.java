@@ -4,6 +4,7 @@ import com.kudos.utils.IdWorker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -14,6 +15,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author suzailong
  * @date 2020/12/29 10:52 上午
  */
+@EnableAspectJAutoProxy
 @SpringBootApplication
 public class SpringAllApp {
     public static void main(String[] args) {

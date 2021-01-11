@@ -1,6 +1,7 @@
-package com.kudos;
+package com.kudos.springtest;
 
 import com.alibaba.fastjson.JSON;
+import com.kudos.SpringAllApp;
 import com.kudos.entity.BeBetter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,12 +20,16 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringAllApp.class)
 public class SpringAllTest {
-    @Autowired // autowire list
+    @Autowired // autowired list
     private List<BeBetter> beBetterList;
 
 
     @Test
     public void springTest() {
+        BeBetter beBetter = beBetterList.get(0);
+        String s = beBetter.toString();
+        beBetter.learning();
+        System.out.println("s = " + s);
         System.out.println("JSON.toJSONString(beBetterList) = " + JSON.toJSONString(beBetterList));
     }
 
