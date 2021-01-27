@@ -1,18 +1,29 @@
 package com.suzl.basic.collection;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
+import com.google.errorprone.annotations.Var;
+import org.apache.commons.collections.map.LRUMap;
 import org.junit.Test;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author Suz1
  * @date 2020/10/22 10:17 上午
  */
 public class MapTest {
+    private Map<String, Object> cache = Collections.synchronizedMap(new LRUMap(1000));
+
+    @Test
+    public void cacheTest() {
+        List<Integer> o = (List<Integer>) cache.get("1");
+        System.out.println(o);
+    }
+
     @Test
     public void hashMapTest() {
         HashMap<String, String> map = new HashMap<>();
@@ -31,6 +42,7 @@ public class MapTest {
         System.out.println("i = " + i);
     }
 
+
     @Test
     public void initMapTest() {
         HashMap<String, String> map = new HashMap<>(10);
@@ -45,6 +57,14 @@ public class MapTest {
             System.out.println("k = " + k);
             System.out.println("v = " + v);
         });
+    }
+
+    @Test
+    public void excludeTest() {
+        List<Integer> integers = new ArrayList<>(List.of(1, 2, 3, 4, 5));
+        List<Integer> list = List.of(1, 2);
+        integers.removeAll(list);
+        System.out.println("JSON.toJSONString(integers) = " + JSON.toJSONString(integers));
     }
 
     @Test

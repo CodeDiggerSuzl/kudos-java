@@ -11,9 +11,9 @@ import org.junit.Test;
 public class HashTest {
     @Test
     public void hashTest() {
-        String shardingFiled = "666358818481";
-        int dbCnt = 4;
-        int tableCnt = 256;
+        String shardingFiled = "8662214805";
+        int dbCnt = 2;
+        int tableCnt = 4;
         int hash = shardingFiled.hashCode();
         if (hash < 0) {
             hash = Math.abs(hash);
