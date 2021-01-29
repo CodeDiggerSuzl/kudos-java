@@ -8,4 +8,15 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: Suz1@mysql
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: latest
+      max-poll-records: 100
+      max-partition-fetch-bytes: 1000000
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, beans, env, metrics
