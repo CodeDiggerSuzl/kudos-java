@@ -1,6 +1,5 @@
 package com.suzl.basic;
 
-import com.google.common.collect.Lists;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -17,14 +16,14 @@ public class HashTest {
     @Test
     public void test() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sd = sdf.format(new Date(Long.parseLong(String.valueOf("1611849600000"))));
+        String sd = sdf.format(new Date(Long.parseLong("1612108800000")));
         System.out.println("格式化结果：" + sd);
     }
 
 
     @Test
     public void hashTest() {
-        String shardingFiled = "10011811298";
+        String shardingFiled = "10023816394";
         int dbCnt = 2;
         int tableCnt = 4;
         int hash = shardingFiled.hashCode();
