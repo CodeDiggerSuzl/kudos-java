@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p> 白龙马 分库分表工具类</p>
@@ -16,16 +17,17 @@ public class HashTest {
     @Test
     public void test() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sd = sdf.format(new Date(Long.parseLong("1612108800000")));
+        String sd = sdf.format(new Date(Long.parseLong("1614224365000")));
         System.out.println("格式化结果：" + sd);
+        System.out.println("TimeUnit.DAYS.toSeconds(1) = " + TimeUnit.DAYS.toSeconds(1));
     }
 
 
     @Test
     public void hashTest() {
-        String shardingFiled = "10023816394";
-        int dbCnt = 2;
-        int tableCnt = 4;
+        String shardingFiled = "1139624814653";
+        int dbCnt = 4;
+        int tableCnt = 256;
         int hash = shardingFiled.hashCode();
         if (hash < 0) {
             hash = Math.abs(hash);
