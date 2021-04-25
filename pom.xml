@@ -8,6 +8,7 @@
         <module>java-basic</module>
         <module>cache</module>
         <module>mq</module>
+        <module>tools</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

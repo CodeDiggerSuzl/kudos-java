@@ -44,4 +44,13 @@ public class StringTest {
         System.out.println(ary.length);
     }
 
+    @Test
+    public void replaceTest() {
+        String s = "${tenantName}司机师傅您好,12月31日和壹月一日${tenantName2}全天订单免抽佣,流水多赚50%!奖励最高可拿111元!记得出车参与活动呀!" +
+                "${tenantName}天气寒冷请您注意保暖和疫情防护!服务过程中戴好口罩.感谢接听祝您生活愉快!再见!";
+        String after = s.replace("${tenantName}", "central park");
+        System.out.println("after = " + after);
+
+    }
+
 }

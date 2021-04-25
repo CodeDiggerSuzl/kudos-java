@@ -2,26 +2,44 @@ package com.suzl.basic.collection;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
-import com.google.errorprone.annotations.Var;
+import com.suzl.basic.collection.list.Book;
+import com.suzl.utils.JsonUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.LRUMap;
 import org.junit.Test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * @author Suz1
  * @date 2020/10/22 10:17 上午
  */
+@Slf4j
 public class MapTest {
     private Map<String, Object> cache = Collections.synchronizedMap(new LRUMap(1000));
+
+    public static void main(String[] args) {
+        Book book = new Book();
+        book.setCity("city");
+        book.setName("name");
+        String s = "0";
+        try {
+            Integer.parseInt(s);
+        } catch (Exception e) {
+            log.error("error in {},s={}", JsonUtils.toJson(book), s, e);
+        }
+    }
 
     @Test
     public void cacheTest() {
         List<Integer> o = (List<Integer>) cache.get("1");
         System.out.println(o);
+    }
+
+    @Test
+    public void intTest() {
+        double s = 0.18;
+        System.out.println((int) (s * 60));
     }
 
     @Test
@@ -96,8 +114,12 @@ public class MapTest {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             Actor actor = (Actor) o;
             return Objects.equal(name, actor.name);
         }

@@ -25,6 +25,7 @@ public class ArrayOpsTest {
     @Test
     /** 打印多维数组可以使用Arrays.deepToString()； */
     public void arrTestTest() {
+        System.out.println(System.currentTimeMillis());
         int[][] ns = {
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},

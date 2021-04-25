@@ -25,7 +25,7 @@ public class HashTest {
 
     @Test
     public void hashTest() {
-        String shardingFiled = "1139624814653";
+        String shardingFiled = "1139421318513";
         int dbCnt = 4;
         int tableCnt = 256;
         int hash = shardingFiled.hashCode();

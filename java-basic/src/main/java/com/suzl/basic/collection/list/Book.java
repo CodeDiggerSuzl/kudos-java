@@ -10,11 +10,8 @@ import lombok.Data;
  */
 @Data
 public class Book {
+    private Long   id;
     private String name;
     private String city;
 
-    public static void main(String[] args) {
-        Double s = Double.valueOf(1);
-        System.out.println(s);
-    }
 }
