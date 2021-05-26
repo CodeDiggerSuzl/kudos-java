@@ -9,6 +9,7 @@
         <module>cache</module>
         <module>mq</module>
         <module>tools</module>
+        <module>master-jvm</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
