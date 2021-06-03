@@ -9,6 +9,8 @@
         <module>cache</module>
         <module>mq</module>
         <module>tools</module>
+        <module>design-pattern</module>
+        <module>interview-q-and-a</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
