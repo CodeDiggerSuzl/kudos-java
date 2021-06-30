@@ -17,7 +17,7 @@ public class OrderStep {
     }
 
     public static List<OrderStep> buildOrders() {
-        List<OrderStep> orderList = new ArrayList<OrderStep>();
+        List<OrderStep> orderList = new ArrayList<>();
         OrderStep orderDemo = new OrderStep();
         orderDemo.setOrderId(15103111039L);
         orderDemo.setDesc("创建");

@@ -11,7 +11,7 @@ import org.junit.Test;
  */
 @Slf4j
 public class StringTest {
-    private static final String HIERARCHY_REGEX      = "([0-9]|,|\\.)+";
+    private static final String HIERARCHY_REGEX = "([0-9]|,|\\.)+";
     private static final String EACH_HIERARCHY_REGEX = "[0-9]\\d*\\.?\\d*";
 
     @Test
@@ -23,8 +23,7 @@ public class StringTest {
     @Test
     public void formatTest() {
         String s = "Hi %s, your score is %d!";
-        // System.out.println(s.formatted("Alice", 80));
-        System.out.println(String.format("Hi %s, your score is %.2f!", "Bob", 59.5));
+        System.out.printf("Hi %s, your score is %.2f!%n", "Bob", 59.5);
     }
 
     @Test
@@ -51,6 +50,13 @@ public class StringTest {
         String after = s.replace("${tenantName}", "central park");
         System.out.println("after = " + after);
 
+    }
+
+    @Test
+    public void replaceAllTest() {
+        String s = "00:30,01:30|02:30,03:30";
+        //  String 反向引用 在 :30 后加上 ":00"
+        System.out.println(s.replaceAll(":\\d{2}", "$0:00"));
     }
 
 }
