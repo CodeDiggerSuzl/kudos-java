@@ -34,9 +34,9 @@ public class HashAlgoTest {
      */
     @Test
     public void md5Test() throws NoSuchAlgorithmException {
-        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        MessageDigest md5 = MessageDigest.getInstance("SHA-1");
         md5.update("Hello".getBytes(StandardCharsets.UTF_8));
-        md5.update("Joex".getBytes(StandardCharsets.UTF_8));
+        md5.update("joe".getBytes(StandardCharsets.UTF_8));
         byte[] digest = md5.digest();
         System.out.println("Arrays.toString(digest) = " + Arrays.toString(digest));
         System.out.println(new BigInteger(1, digest).toString(16));

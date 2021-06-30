@@ -5,13 +5,12 @@ import org.junit.Test;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 
 /**
  * @author Suz1
  * @date 2020/8/15 4:49 下午
  */
-public class UrlTest {
+public class UrlEncodeTest {
 
     /**
      * URL编码
@@ -33,12 +32,5 @@ public class UrlTest {
         System.out.println("decoded = " + decoded);
     }
 
-    @Test
-    public void baseEncodeTest() {
-        byte[] input = new byte[]{(byte) 0xe4, (byte) 0xb8, (byte) 0xad};
-        String b64encoded = Base64.getEncoder().encodeToString(input);
-        System.out.println(b64encoded);
-
-    }
 
 }
