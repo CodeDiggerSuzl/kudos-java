@@ -1,5 +1,7 @@
 package com.suzl.guava;
 
+import com.suzl.utils.JsonUtils;
+import lombok.Data;
 import org.junit.Test;
 
 /**
@@ -12,5 +14,22 @@ public class UnmodifiableTest {
     @Test
     public void unmodifiableJdkTest() {
 
+        final Person person = new Person();
+        person.setName("hah");
+
+        Person w = person;
+        test1(person);
+        System.out.println(JsonUtils.toJson(person));
+        System.out.println(JsonUtils.toJson(w));
     }
+
+    void test1(Person p) {
+        p.setName("xixi");
+    }
+
+    @Data
+    static class Person {
+        String name;
+    }
+
 }

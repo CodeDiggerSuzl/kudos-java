@@ -30,8 +30,15 @@ public class HashTest {
     }
 
     @Test
+    public void timestampTest() {
+        System.out.println(System.currentTimeMillis() / 1000);
+        System.out.println(new Date().getTime());
+        System.out.println(new Date().getTime() == System.currentTimeMillis());
+    }
+
+    @Test
     public void hashTest() {
-        String shardingFiled = "2084751112156";
+        String shardingFiled = "2128218612603";
         int dbCnt = 4, tableCnt = 256;
 
         int hash = shardingFiled.hashCode();
