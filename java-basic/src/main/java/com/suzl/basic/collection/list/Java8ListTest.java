@@ -5,6 +5,8 @@ import com.google.common.collect.Lists;
 import com.suzl.utils.JsonUtils;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -20,7 +22,7 @@ public class Java8ListTest {
         Book book = new Book();
         book.setName("Java-Book");
         book.setCity("a,b,c");
-        book.setId(1L);
+        book.setId(null);
 
         Book b1 = new Book();
         b1.setName("Go-Book");
@@ -37,9 +39,20 @@ public class Java8ListTest {
         // key tenantId, filed: adCode value list
         Map<Object[], List<Book>> collect = list.stream().collect(Collectors.groupingBy(p -> Arrays.stream(p.getCity().split(",")).toArray(), Collectors.toList()));
         System.out.println(JSON.toJSONString(collect, false));
+        // list.sort(Comparator.comparing(Book::getId, Comparator.nullsFirst(Comparator.naturalOrder())).reversed());
+
         list.sort(Comparator.comparing(Book::getId).reversed());
+
         System.out.println("JsonUtils.toJson(list) = " + JsonUtils.toJson(list));
     }
 
+    @Test
+    public void test(){
+        BigDecimal bd = new BigDecimal("12.733");
+        long l = bd.setScale( 0, BigDecimal.ROUND_UP ).longValue(); // 向上取整
+        long l2 = bd.setScale( 1, RoundingMode.FLOOR).longValue();
+        System.out.println(JSON.toJSON(l));
+        System.out.println(JSON.toJSON(l2));
+    }
 }
 
