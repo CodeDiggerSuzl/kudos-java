@@ -13,6 +13,9 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * Selector, classic code
+ */
 @Slf4j
 public class SelectorDemo {
     public static void main(String[] args) throws IOException {
@@ -48,13 +51,15 @@ public class SelectorDemo {
                     ServerSocketChannel channel = (ServerSocketChannel) key.channel();
                     SocketChannel sc = channel.accept(); // NOTE 没有的时候会返回 null, 下一行可能会导致空指针
                     sc.configureBlocking(false);
-                    SelectionKey scKey = sc.register(selector, 0, null);
+                    ByteBuffer bf = ByteBuffer.allocate(16);
+                    SelectionKey scKey = sc.register(selector, 0, bf); // NOTE 将一个 ByteBuffer 作为 attachment 关联到 selection key 上
                     scKey.interestOps(SelectionKey.OP_READ);
                 } else if (key.isReadable()) { // 如果是 read
                     try {
                         SocketChannel ch = (SocketChannel) key.channel();
-                        ByteBuffer bf = ByteBuffer.allocate(16); // NOTE 每个 socket channel 都必须有自己独立的 ByteBuffer, 附件 attachment
-                        int read = ch.read(bf);
+                        // ByteBuffer bf = ByteBuffer.allocate(16); // NOTE 每个 socket channel 都必须有自己独立的 ByteBuffer, 附件 attachment
+                        ByteBuffer attachBuffer = (ByteBuffer) key.attachment(); // NOTE 获取 selection key 的 attachment
+                        int read = ch.read(attachBuffer);
                         // NOTE read 方法正常断开 会返回 -1
                         if (read == -1) {
                             key.cancel();
@@ -68,7 +73,14 @@ public class SelectorDemo {
                              会丢失前 16个字节的数据, 比如传入 1234567890abcdhahah\n  只会得到 hahah, 前 16 个自己丢失了
                              2. ByteBuffer 不能为局部变量
                              */
-                            split(buffer);
+                            split(attachBuffer);
+                            // NOTE 说明一个都没有消耗掉 => buffer 满了
+                            if (attachBuffer.position() == attachBuffer.limit()) {
+                                ByteBuffer newByteBuffer = ByteBuffer.allocate(attachBuffer.capacity() * 2);
+                                attachBuffer.flip();
+                                newByteBuffer.put(attachBuffer); // 拷贝到新的 buffer 中
+                                key.attach(newByteBuffer);
+                            }
                         }
                     } catch (IOException e) {
                         // NOTE 远程异常断开链接后会强制断开链接, 会触发一个 read 事件, 这里捕获异常后要进行事件的处理
