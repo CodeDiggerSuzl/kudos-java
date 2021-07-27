@@ -11,5 +11,6 @@ public class Client {
         channel.connect(new InetSocketAddress("localhost", 8080));
         channel.write(Charset.defaultCharset().encode("hello world !"));
         System.out.println("waiting..");
+        System.in.read();
     }
 }
