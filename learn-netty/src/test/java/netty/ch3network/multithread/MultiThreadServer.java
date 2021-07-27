@@ -73,6 +73,7 @@ public class MultiThreadServer {
         }
 
         /**
+         * NOTE 使用队列解决不同线程的数据通信
          * 初始化线程和 selector
          */
         public void register(SocketChannel sc) throws IOException {
@@ -97,6 +98,25 @@ public class MultiThreadServer {
             });
             // NOTE  BOSS 线程主动唤醒 selector 唤醒下面的 selector
             selector.wakeup();
+        }
+
+        /**
+         * NOTE: 使用 wakeup 来唤醒 selector 和上面的方式可以做到相同的效果
+         * NOTE: 这里要重点理解 wakeup 方法
+         *
+         * @param sc
+         * @throws IOException
+         */
+        public void registerByWakeUp(SocketChannel sc) throws IOException {
+            // STEP 2 仅仅初始化一次
+            if (!hasInit) {
+                thread = new Thread(this, name);
+                thread.start(); // NOTE
+                selector = Selector.open();
+            }
+            // ! NOTE: wakeup 就像发了一张票 只要拿到一张票就不会阻塞,无论顺序
+            selector.wakeup();
+            sc.register(selector, SelectionKey.OP_READ, null);
         }
 
         @Override
