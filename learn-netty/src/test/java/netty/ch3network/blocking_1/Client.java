@@ -1,4 +1,4 @@
-package netty.ch3network.blocking;
+package netty.ch3network.blocking_1;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
