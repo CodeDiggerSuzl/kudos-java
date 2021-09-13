@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.Iterator;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 多线程版本<p>
@@ -33,9 +34,14 @@ public class MultiThreadServer {
         ssc.bind(new InetSocketAddress(8080));
 
         // 创建固定的数量的 Worker, 并且初始化
-        Worker worker = new Worker("work-0");
+        // Worker worker = new Worker("work-0");
+        Worker[] workers = new Worker[Runtime.getRuntime().availableProcessors()]; // 线程数设置为核心线程数 坑 docker 中的核心数可能有误 读取到的是物理机的 cpu 核心数
 
+        for (int i = 0; i < workers.length; i++) {
+            workers[i] = new Worker("woker-" + i);
+        }
 
+        AtomicInteger index = new AtomicInteger();
         while (true) {
             boss.select();
             Iterator<SelectionKey> iter = boss.selectedKeys().iterator();
@@ -50,7 +56,9 @@ public class MultiThreadServer {
                     log.debug("before....{}", sc.getRemoteAddress());
                     // sc.register(worker.selector, SelectionKey.OP_READ, null); // NOTE sc 的注册和 work 中的注册不再同一个线程. 导致阻塞
                     // STEP 1: 注册链接 初始化 worker
-                    worker.register(sc); // 被 boss 线程所调用, register 仍然在 Boss 线程中
+                    // worker.register(sc); // 被 boss 线程所调用, register 仍然在 Boss 线程中
+                    // ! round robin(轮询)
+                    workers[index.getAndIncrement() % workers.length].register(sc);
                     log.debug("after....{}", sc.getRemoteAddress());
                 }
             }

@@ -24,7 +24,6 @@ public class OrderConsumer {
 
             @Override // 每个队列采用一个线程去消费
             public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs, ConsumeOrderlyContext context) {
-                // System.out.println("context = " + JSON.toJSONString(context, true));
                 for (MessageExt msg : msgs) {
                     Thread thread = Thread.currentThread();
                     System.out.println("线程名称" + thread.getName());
