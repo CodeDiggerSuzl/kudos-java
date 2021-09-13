@@ -1,4 +1,4 @@
-package netty;
+package ch1_nio;
 
 import io.netty.util.internal.StringUtil;
 

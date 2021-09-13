@@ -1,4 +1,4 @@
-package netty.ch3network.writeserver_4;
+package ch1_nio.ch3network.writeserver_4;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
