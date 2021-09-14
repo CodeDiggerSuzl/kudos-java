@@ -1,4 +1,4 @@
-package netty.ch2filechannel;
+package ch1_nio.ch2filechannel;
 
 import java.io.IOException;
 import java.nio.file.*;

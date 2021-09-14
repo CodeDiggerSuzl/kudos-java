@@ -1,4 +1,4 @@
-package netty.ch2filechannel;
+package ch1_nio.ch2filechannel;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

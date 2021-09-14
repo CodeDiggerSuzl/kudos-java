@@ -1,7 +1,7 @@
-package netty.ch3network.nonblocking_2;
+package ch1_nio.ch3network.nonblocking_2;
 
+import ch1_nio.ByteBufferUtil;
 import lombok.extern.slf4j.Slf4j;
-import netty.ByteBufferUtil;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

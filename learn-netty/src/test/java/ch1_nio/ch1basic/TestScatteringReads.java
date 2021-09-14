@@ -1,4 +1,4 @@
-package netty.ch1basic;
+package ch1_nio.ch1basic;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
