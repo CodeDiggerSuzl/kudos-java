@@ -65,7 +65,7 @@ public class MultiThreadServer {
         private final ConcurrentLinkedQueue<Runnable> queue = new ConcurrentLinkedQueue<>();
         private Thread thread;
         private Selector selector;
-        private String name;
+        private final String name;
         private volatile boolean hasInit = false; // 线程和 selector 还没初始化,保证只初始化一次
 
         public Worker(String name) {
