@@ -161,11 +161,11 @@ new Bootstrap()
 
 ## 3. 组件
 
-### 3.1 EventLoop
+### 3.1🌟 EventLoop
 
 事件循环对象
 
-EventLoop 本质是一个单线程执行器（同时维护了一个 Selector），里面有 run 方法处理 Channel 上源源不断的 io 事件。
+EventLoop 本质是一个**单线程执行器**（同时维护了一个 Selector），里面有 run 方法处理 Channel 上源源不断的 io 事件。
 
 它的继承关系比较复杂
 
@@ -174,10 +174,15 @@ EventLoop 本质是一个单线程执行器（同时维护了一个 Selector）�
     * 提供了 boolean inEventLoop(Thread thread) 方法判断一个线程是否属于此 EventLoop
     * 提供了 parent 方法来看看自己属于哪个 EventLoopGroup
 
+**EventLoopGroup**
+
 事件循环组
 
-EventLoopGroup 是一组 EventLoop，Channel 一般会调用 EventLoopGroup 的 register 方法来绑定其中一个 EventLoop，后续这个 Channel 上的 io 事件都由此
-EventLoop 来处理（保证了 io 事件处理时的线程安全）
+> 每个事件循环是一个线程，默认构造方法取得1， 或着核心线程数 * 2
+>
+> ![image-20211005112342354](Netty02-入门.assets/image-20211005112342354.png)
+
+EventLoopGroup 是一组 EventLoop，Channel 一般会调用 EventLoopGroup 的 register 方法来绑定其中一个 EventLoop，后续这个 Channel 上的 io 事件都由此EventLoop 来处理（**保证了 io 事件处理时的线程安全**）
 
 * 继承自 ch1_nio 自己的 EventExecutorGroup
     * 实现了 Iterable 接口提供遍历 EventLoop 的能力
@@ -376,7 +381,7 @@ new ServerBootstrap()
 
 ![](img/0041.png)
 
-#### 💡 handler 执行中如何换人？
+#### 💡 handler 执行中是如何换人（如何切换的）？
 
 关键代码 `io.ch1_nio.channel.AbstractChannelHandlerContext#invokeChannelRead()`
 
@@ -384,15 +389,15 @@ new ServerBootstrap()
 static void invokeChannelRead(final AbstractChannelHandlerContext next, Object msg) {
     final Object m = next.pipeline.touch(ObjectUtil.checkNotNull(msg, "msg"), next);
     // 下一个 handler 的事件循环是否与当前的事件循环是同一个线程
-    EventExecutor executor = next.executor();
+    EventExecutor executor = next.executor(); // 返回下一个 handler 的 eventLoop
     
     // 是，直接调用
-    if (executor.inEventLoop()) {
+    if (executor.inEventLoop()) { // 当前 handler 中的线程是否和 eventLoop 是同一个线程
         next.invokeChannelRead(m);
     } 
     // 不是，将要执行的代码作为任务提交给下一个事件循环处理（换人）
     else {
-        executor.execute(new Runnable() {
+        executor.execute(new Runnable() { // 如果2 个 handler 绑定的是同一个线程, 那么就直接调用,否则把要调用的代码封装为一个任务对象, 由下一个 handler 的线程来调用
             @Override
             public void run() {
                 next.invokeChannelRead(m);
@@ -457,15 +462,15 @@ nioWorkers.scheduleAtFixedRate(() -> {
 
 channel 的主要作用
 
-* close() 可以用来关闭 channel
-* closeFuture() 用来处理 channel 的关闭
+* close() 可以用来关闭 channel（立刻关闭）
+* **closeFuture()** 用来处理 channel 的关闭
     * sync 方法作用是同步等待 channel 关闭
     * 而 addListener 方法是异步等待 channel 关闭
 * pipeline() 方法添加处理器
-* write() 方法将数据写入
-* writeAndFlush() 方法将数据写入并刷出
+* write() 方法将数据写入到客户端的缓冲区中。
+* writeAndFlush() **方法将数据写入并刷出**
 
-#### ChannelFuture
+#### 3.2.1 ChannelFuture
 
 这时刚才的客户端代码
 
@@ -504,7 +509,12 @@ channelFuture.sync().channel().writeAndFlush(new Date() + ": hello world!");
 
 * 1 处返回的是 ChannelFuture 对象，它的作用是利用 channel() 方法来获取 Channel 对象
 
-**注意** connect 方法是异步的，意味着不等连接建立，方法执行就返回了。因此 channelFuture 对象中不能【立刻】获得到正确的 Channel 对象
+**注意**
+
+-  **connect 方法是异步的，意味着不等连接建立，方法执行就返回了。因此 channelFuture 对象中不能【立刻】获得到正确的 Channel 对象**
+- 主要是 **connect()** 是异步非阻塞的方法， 是 main 线程发起的调用，真正执行 connect 是另一个 NIO 线程
+
+
 
 实验如下：
 
@@ -529,7 +539,7 @@ System.out.println(channelFuture.channel()); // 3
 * 执行到 2 时，sync 方法是同步等待连接建立完成
 * 执行到 3 时，连接肯定建立了，打印 `[id: 0x2e1884dd, L:/127.0.0.1:57191 - R:/127.0.0.1:8080]`
 
-除了用 sync 方法可以让异步操作同步以外，还可以使用回调的方式：
+**除了用 sync 方法可以让异步操作同步以外，还可以使用回调的方式：**
 
 ```java
 ChannelFuture channelFuture = new Bootstrap()
@@ -552,7 +562,47 @@ channelFuture.addListener((ChannelFutureListener) future -> {
 * ChannelFutureListener 会在连接建立时被调用（其中 operationComplete 方法），因此执行到 2
   时，连接肯定建立了，打印 `[id: 0x749124ba, L:/127.0.0.1:57351 - R:/127.0.0.1:8080]`
 
-#### CloseFuture
+
+
+两种方法来时异步变同步
+
+1. sysc()
+2. 添加 listenner 
+
+```java
+public static void main(String[] args) throws InterruptedException {
+        ChannelFuture future = new Bootstrap()
+                .group(new NioEventLoopGroup())
+                .channel(NioSocketChannel.class)
+                .handler(new ChannelInitializer<>() {
+                    @Override
+                    protected void initChannel(Channel ch) {
+                        ch.pipeline().addLast(new StringEncoder());
+                    }
+                }).connect("127.0.0.1", 8080); // connect 是异步非阻塞方法, 真正执行的是 NIO 的一个线程.
+
+        // 方法1, 使用 sync 进行阻塞
+        ChannelFuture sync = future.sync(); // 没有这行代码, 上面的 connect 还没有拿到, 下面调用任何方法都是白搭
+        sync.channel().writeAndFlush("hh");
+
+        // 方法2, 使用监听器, 异步处理结果
+        // future.addListener((ChannelFutureListener) f -> {
+        //     Channel channel = f.channel();
+        //     System.out.println(channel);
+        //     channel.writeAndFlush("using listener");
+        // });
+        future.addListener(new ChannelFutureListener() {
+            @Override
+            public void operationComplete(ChannelFuture future) throws Exception {
+                future.channel().writeAndFlush("using listener");
+            }
+        });
+    }
+```
+
+
+
+#### CloseFuture (关闭处理后进行的处理操作)
 
 ```java
 @Slf4j
