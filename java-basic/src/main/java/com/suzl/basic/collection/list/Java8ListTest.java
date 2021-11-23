@@ -2,6 +2,7 @@ package com.suzl.basic.collection.list;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import com.suzl.utils.JsonUtils;
 import org.junit.Test;
 
@@ -47,10 +48,10 @@ public class Java8ListTest {
     }
 
     @Test
-    public void test(){
+    public void test() {
         BigDecimal bd = new BigDecimal("12.733");
-        long l = bd.setScale( 0, BigDecimal.ROUND_UP ).longValue(); // 向上取整
-        long l2 = bd.setScale( 1, RoundingMode.FLOOR).longValue();
+        long l = bd.setScale(0, BigDecimal.ROUND_UP).longValue(); // 向上取整
+        long l2 = bd.setScale(1, RoundingMode.FLOOR).longValue();
         System.out.println(JSON.toJSON(l));
         System.out.println(JSON.toJSON(l2));
     }
