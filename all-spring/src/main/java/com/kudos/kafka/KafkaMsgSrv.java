@@ -22,8 +22,7 @@ public class KafkaMsgSrv {
     private KafkaTemplate<String, String> kafkaMsgSrv;
 
     private void send(String topic, Object msg) throws JsonProcessingException {
-        ProducerRecord<String, String> pr = new ProducerRecord<>(topic,
-                objectMapper.writeValueAsString(msg));
+        ProducerRecord<String, String> pr = new ProducerRecord<>(topic, objectMapper.writeValueAsString(msg));
         pr.headers().add("type", msg.getClass().getName().getBytes(StandardCharsets.UTF_8));
         kafkaMsgSrv.send(pr);
     }

@@ -3,7 +3,7 @@ package com.suzl.juc.aqs;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * <p>aqd</p>
+ * <p>aqs</p>
  *
  * @author suzailong
  * @date 2021/2/25 12:20 上午

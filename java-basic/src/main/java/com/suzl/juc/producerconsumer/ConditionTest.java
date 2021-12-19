@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Suz1
  * @date 2020/3/31 8:37 下午
  */
-public class Cond {
+public class ConditionTest {
     public static void main(String[] args) {
         Data3 data3 = new Data3();
         new Thread(() -> {
@@ -37,12 +37,12 @@ class Data3 {
     /**
      * 不同的监视器 监视不同的线程
      */
-    private final Lock      lock  = new ReentrantLock();
+    private final Lock lock = new ReentrantLock();
     private final Condition cond1 = lock.newCondition();
     private final Condition cond2 = lock.newCondition();
     private final Condition cond3 = lock.newCondition();
 
-    private int n = 1;
+    private volatile int n = 1;
 
     public void printA() {
         lock.lock();

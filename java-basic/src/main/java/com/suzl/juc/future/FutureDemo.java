@@ -37,7 +37,7 @@ public class FutureDemo {
             int i = 10 / 0;
             return "success";
         });
-        // BiConsumer
+        // BitConsumer
         supplyAsync.whenComplete((t, u) -> {
             System.out.println("t : " + t); // t 正常的返回结果
             System.out.println("u : " + u); // u 错误信息
