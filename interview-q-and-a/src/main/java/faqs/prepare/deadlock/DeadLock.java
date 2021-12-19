@@ -1,4 +1,4 @@
-package faqs;
+package faqs.prepare.deadlock;
 
 /**
  * https://juejin.cn/post/6844903577660424206
