@@ -2,7 +2,7 @@ package faqs.prepare.deadlock;
 
 /**
  * https://juejin.cn/post/6844903577660424206
- * 死锁
+ * 实现一个死锁
  *
  * @author suzl
  * @date 2021/12/9 1:38 AM

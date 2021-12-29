@@ -1,5 +1,7 @@
 package faqs.real.tanma;
 
+import java.io.IOException;
+
 /**
  * 三个线程交替打印 ABC ABC 循环 10 次
  * <p>
@@ -10,7 +12,7 @@ package faqs.real.tanma;
  */
 public class Q3_ThreadNotifyDemo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Data data = new Data();
         new Thread(() -> {
             for (int i = 0; i < 10; i++) {
@@ -40,6 +42,7 @@ public class Q3_ThreadNotifyDemo {
             }
         }).start();
 
+        System.in.read();
     }
 }
 
