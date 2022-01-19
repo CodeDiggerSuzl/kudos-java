@@ -8,14 +8,14 @@ import java.util.concurrent.Semaphore;
 /**
  * 欧科云联的面试题, 让判断出会打印出什么
  */
-public class Demo {
-    static int clientTotal = 4;
-    static int threadTotal = 2;
+public class OkChainQuestion {
+    static int clientTotal = 5000;
+    static int threadTotal = 300; // 限制 300 个并发
 
     static StringBuilder stringBuilder = new StringBuilder();
 
     static void update() {
-        stringBuilder.append("1");
+        stringBuilder.append("1"); // 这里不是线程安全的 semaphore 不能保证线程安全
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -39,6 +39,6 @@ public class Demo {
         executorService.shutdown();
 
 
-        System.out.println("===" + stringBuilder.toString());
+        System.out.println("===" + stringBuilder.length());
     }
 }
