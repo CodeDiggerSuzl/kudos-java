@@ -15,6 +15,8 @@
         <module>master-jvm</module>
         <module>common-module</module>
         <module>learn-micro-service</module>
+        <module>unit-test</module>
+        <module>circuit-breaker</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
