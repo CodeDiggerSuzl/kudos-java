@@ -12,7 +12,9 @@ import java.util.concurrent.CyclicBarrier;
 public class CyclicBarrierDemo {
 
     public static void main(String[] args) {
-        CyclicBarrier barrier = new CyclicBarrier(7, () -> {System.out.println("all done");});
+        CyclicBarrier barrier = new CyclicBarrier(7, () -> {
+            System.out.println("all done");
+        });
 
         for (int i = 1; i <= 7; i++) {
             // 只能拿到 final 型的

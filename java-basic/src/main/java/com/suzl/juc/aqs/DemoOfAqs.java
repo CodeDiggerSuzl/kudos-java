@@ -1,5 +1,6 @@
 package com.suzl.juc.aqs;
 
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -18,5 +19,6 @@ public class DemoOfAqs {
         } finally {
             lock.unlock();
         }
+        CyclicBarrier cyclicBarrier = new CyclicBarrier();
     }
 }
