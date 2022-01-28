@@ -1,4 +1,4 @@
-package com.suzl.basic.thread;
+package com.suzl.async.thread;
 
 import java.util.concurrent.CompletableFuture;
 

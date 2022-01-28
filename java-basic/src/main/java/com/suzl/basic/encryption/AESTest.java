@@ -1,4 +1,4 @@
-package com.suzl.basic.encryption_safty;
+package com.suzl.basic.encryption;
 
 import org.junit.Test;
 

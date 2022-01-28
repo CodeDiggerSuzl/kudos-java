@@ -1,4 +1,4 @@
-package com.suzl.basic.concurrent;
+package com.suzl.async.concurrent;
 
 import org.junit.Test;
 

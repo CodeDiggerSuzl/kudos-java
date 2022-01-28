@@ -1,4 +1,4 @@
-package com.suzl.basic.thread;
+package com.suzl.async.thread;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -17,9 +17,9 @@ public class ConditionTest {
 }
 
 class TaskQueue {
-    private final Lock          lock  = new ReentrantLock();
-    private final Condition     cond  = lock.newCondition();
-    private       Queue<String> queue = new LinkedList<>();
+    private final Lock lock = new ReentrantLock();
+    private final Condition cond = lock.newCondition();
+    private Queue<String> queue = new LinkedList<>();
 
     public void addTask(String s) {
         lock.lock();

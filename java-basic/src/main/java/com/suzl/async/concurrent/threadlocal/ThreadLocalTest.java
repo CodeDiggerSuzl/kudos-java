@@ -1,4 +1,4 @@
-package com.suzl.basic.concurrent.threadlocal;
+package com.suzl.async.concurrent.threadlocal;
 
 import org.junit.Test;
 
