@@ -57,62 +57,62 @@ public class ProviderConsumerUsingNotify {
 
 
     // 下面的是使用实现 Runnable 方法
-//    public static void main(String[] args) {
-//
-//        ProviderConsumerUsingNotify domo = new ProviderConsumerUsingNotify();
-//        Provider provider = domo.new Provider();
-//        Consumer consumer = domo.new Consumer();
-//
-//        new Thread(provider).start();
-//        new Thread(consumer).start();
-//    }
-//
-//
-//    class Provider implements Runnable {
-//        @Override
-//        public void run() {
-//            while (true) {
-//                synchronized (queue) {
-//                    while (queue.size() == size) {
-//                        try {
-//                            queue.wait();
-//                            // System.out.println("queue is full, wait...");
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                    queue.offer(1);
-//                    System.out.println("生产一个元素了...");
-//                    queue.notify(); //  生产之后通知等待的线程
-//                }
-//            }
-//        }
-//    }
-//
-//    class Consumer implements Runnable {
-//        @Override
-//        public void run() {
-//            while (true) {
-//                synchronized (queue) {
-//                    while (queue.size() == 0) {
-//                        try {
-//                            queue.wait();
-//                            // System.out.println("queue is empty, wait...");
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                    queue.poll();
-//                    System.out.println("消费一个元素了...");
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    queue.notify(); //  消费之后通知等待的线程
-//                }
-//            }
-//        }
-//
-//    }
+    //    public static void main(String[] args) {
+    //
+    //        ProviderConsumerUsingNotify domo = new ProviderConsumerUsingNotify();
+    //        Provider provider = domo.new Provider();
+    //        Consumer consumer = domo.new Consumer();
+    //
+    //        new Thread(provider).start();
+    //        new Thread(consumer).start();
+    //    }
+    //
+    //
+    //    class Provider implements Runnable {
+    //        @Override
+    //        public void run() {
+    //            while (true) {
+    //                synchronized (queue) {
+    //                    while (queue.size() == size) {
+    //                        try {
+    //                            queue.wait();
+    //                            // System.out.println("queue is full, wait...");
+    //                        } catch (InterruptedException e) {
+    //                            e.printStackTrace();
+    //                        }
+    //                    }
+    //                    queue.offer(1);
+    //                    System.out.println("生产一个元素了...");
+    //                    queue.notify(); //  生产之后通知等待的线程
+    //                }
+    //            }
+    //        }
+    //    }
+    //
+    //    class Consumer implements Runnable {
+    //        @Override
+    //        public void run() {
+    //            while (true) {
+    //                synchronized (queue) {
+    //                    while (queue.size() == 0) {
+    //                        try {
+    //                            queue.wait();
+    //                            // System.out.println("queue is empty, wait...");
+    //                        } catch (InterruptedException e) {
+    //                            e.printStackTrace();
+    //                        }
+    //                    }
+    //                    queue.poll();
+    //                    System.out.println("消费一个元素了...");
+    //                    try {
+    //                        Thread.sleep(1000);
+    //                    } catch (InterruptedException e) {
+    //                        e.printStackTrace();
+    //                    }
+    //                    queue.notify(); //  消费之后通知等待的线程
+    //                }
+    //            }
+    //        }
+    //
+    //    }
 }

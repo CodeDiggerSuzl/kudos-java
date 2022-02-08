@@ -19,11 +19,16 @@ public class CyclicBarrierDemo {
         for (int i = 1; i <= 7; i++) {
             // 只能拿到 final 型的
             final int t = i;
+            int finalI = i;
             new Thread(() -> {
-                System.out.println(Thread.currentThread().getName() + " get " + t);
                 try {
-                    // 等待计数器变为 7
-                    barrier.await();
+                    if (finalI == 3) {
+                        barrier.reset();
+                        System.out.println(Thread.currentThread().getName() + " get " + t);
+                    } else {
+                        // 等待计数器变为 7
+                        barrier.await();
+                    }
                 } catch (InterruptedException | BrokenBarrierException e) {
                     e.printStackTrace();
                 }
