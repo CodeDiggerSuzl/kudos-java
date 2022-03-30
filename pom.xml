@@ -17,6 +17,7 @@
         <module>learn-micro-service</module>
         <module>unit-test</module>
         <module>circuit-breaker</module>
+        <module>orm</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
