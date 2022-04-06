@@ -1,4 +1,4 @@
-package com.suzl.basic.collection.list;
+package com.suzl.basic.collection.entity;
 
 import lombok.Data;
 

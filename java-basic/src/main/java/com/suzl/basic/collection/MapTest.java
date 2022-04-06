@@ -2,7 +2,7 @@ package com.suzl.basic.collection;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Objects;
-import com.suzl.basic.collection.list.Book;
+import com.suzl.basic.collection.entity.Book;
 import com.suzl.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.LRUMap;

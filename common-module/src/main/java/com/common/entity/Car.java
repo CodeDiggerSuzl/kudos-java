@@ -1,4 +1,4 @@
-package com.suzl.basic.beans;
+package com.common.entity;
 
 import lombok.Data;
 

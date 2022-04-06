@@ -12,6 +12,11 @@
     <artifactId>java-basic</artifactId>
     <dependencies>
         <dependency>
+            <groupId>com.codedigger</groupId>
+            <artifactId>common-module</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.dadiyang</groupId>
             <artifactId>equator</artifactId>
             <version>1.0.1</version>

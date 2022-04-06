@@ -26,7 +26,7 @@ public class StreamTest {
         Date date = new Date();
         User u1 = new User(1, "a", null, date);
         User u2 = new User(2, "b", null, DateUtils.addDays(date, 1));
-        User u3 = new User(3, "c", 23, DateUtils.addDays(date, 2));
+        User u3 = new User(null, "c", 23, DateUtils.addDays(date, 2));
 //        User u4 = new User(4, "d", 24);
 //        User u5 = new User(6, "e", 25);
 
@@ -38,18 +38,18 @@ public class StreamTest {
 //                .forEach(System.out::println);
 //        // min and max
 //        // comparing 源码
-//        User user = Stream.of(u1, u2, u3).min(Comparator.comparing(User::getAge)).get();
+////        User user = Stream.of(u1, u2, u3).min(Comparator.comparing(User::getAge)).get();
         ArrayList<User> users = Lists.newArrayList(u1, u3, u2);
 //        Comparator<User> comparator = Comparator.comparing(User::getId).thenComparing(User::getAge);
-//        User user = users.stream().min(comparator).orElse(null);
-        int i = users.stream().mapToInt(t -> t.getAge() == null ? 0 : t.getAge()).max().orElse(0);
-        System.out.println(i);
-//        String s = JsonUtils.toJson(users);
-//        System.out.println(s);
-//
-//        users.sort(Comparator.comparing(User::getId).reversed());
-//
-//        String s2 = JsonUtils.toJson(users);
-//        System.out.println(s2);
+////        User user = users.stream().min(comparator).orElse(null);
+////        int i = users.stream().mapToInt(t -> t.getAge() == null ? 0 : t.getAge()).max().orElse(0);
+//        System.out.println(i);
+////        String s = JsonUtils.toJson(users);
+////        System.out.println(s);
+////
+        users.sort(Comparator.comparing(User::getId, Comparator.nullsFirst(Comparator.naturalOrder())));/*.reversed()*/
+
+        String s2 = JsonUtils.toJson(users);
+        System.out.println(s2);
     }
 }
