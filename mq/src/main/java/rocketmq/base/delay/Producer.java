@@ -23,9 +23,9 @@ public class Producer {
         producer.start();
         for (int i = 0; i < 10; i++) {
             // 4. 创建消息对象，指定主题 topic tag 和消息体
-            Message message = new Message("topic_delay", "tag_delay", ("delayMsg, No_" + i).getBytes());
+            Message message = new Message("topic_delay", "tag_delay_tag", ("delayMsg, No_" + i).getBytes());
             //  设置延时
-            message.setDelayTimeLevel(2);
+            message.setDelayTimeLevel(1);
             // 5. 发送消息
             SendResult send = producer.send(message);
             System.out.println(JSON.toJSONString(send, true));

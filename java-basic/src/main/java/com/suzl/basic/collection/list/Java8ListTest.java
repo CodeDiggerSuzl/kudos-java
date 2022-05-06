@@ -22,24 +22,24 @@ public class Java8ListTest {
     public void groupTest() {
         Book book = new Book();
         book.setName("Java-Book");
-        book.setCity("a,b,c");
-        book.setId(null);
+//        book.setCity("a,b,c");
+        book.setId(3L);
 
         Book b1 = new Book();
         b1.setName("Go-Book");
-        b1.setCity("a,c,e");
+//        b1.setCity("a,c,e");
         b1.setId(2L);
 
         Book b3 = new Book();
         b3.setName("js-book");
-        b3.setCity("a,c");
+//        b3.setCity("a,c");
         b3.setId(300L);
 
         ArrayList<Book> list = Lists.newArrayList(book, b1, b3);
         HashMap<String, List<Book>> m = new HashMap<>(8);
         // key tenantId, filed: adCode value list
-        Map<Object[], List<Book>> collect = list.stream().collect(Collectors.groupingBy(p -> Arrays.stream(p.getCity().split(",")).toArray(), Collectors.toList()));
-        System.out.println(JSON.toJSONString(collect, false));
+//        Map<Object[], List<Book>> collect = list.stream().collect(Collectors.groupingBy(p -> Arrays.stream(p.getCity().split(",")).toArray(), Collectors.toList()));
+//        System.out.println(JSON.toJSONString(collect, false));
         // list.sort(Comparator.comparing(Book::getId, Comparator.nullsFirst(Comparator.naturalOrder())).reversed());
 
         list.sort(Comparator.comparing(Book::getId).reversed());

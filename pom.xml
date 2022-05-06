@@ -18,6 +18,7 @@
         <module>unit-test</module>
         <module>circuit-breaker</module>
         <module>orm</module>
+        <module>book-reading-code</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

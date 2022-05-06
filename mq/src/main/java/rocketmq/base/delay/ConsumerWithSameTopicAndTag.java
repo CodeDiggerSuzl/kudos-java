@@ -12,7 +12,7 @@ import rocketmq.constant.ConfigConst;
  * @author Suz1
  * @date 2020/12/20 4:57 下午
  */
-public class Consumer {
+public class ConsumerWithSameTopicAndTag {
     public static void main(String[] args) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("first_group");
         consumer.setNamesrvAddr(ConfigConst.ROCKET_MQ_NAMESRV_ADDR);
