@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class AsyncProducer {
     public static void main(String[] args) throws MQClientException, RemotingException, InterruptedException, MQBrokerException {
         DefaultMQProducer producer = new DefaultMQProducer("first_group");
-        producer.setNamesrvAddr(ConfigConst.ROCKET_MQ_NAMESRV_ADDR);
+        producer.setNamesrvAddr(ConfigConst.REMOTE_ROCKET_MQ_NAMESRV_ADDR);
         producer.start();
         producer.setRetryTimesWhenSendAsyncFailed(100);
         for (int i = 0; i < 10; i++) {

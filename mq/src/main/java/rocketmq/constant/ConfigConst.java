@@ -6,9 +6,13 @@ package rocketmq.constant;
  */
 public class ConfigConst {
     /**
-     * name server 地址
+     * 云 name server 地址
      */
-    public static final String ROCKET_MQ_NAMESRV_ADDR = "127.0.0.1:9876";
+    public static final String REMOTE_ROCKET_MQ_NAMESRV_ADDR = "43.142.65.171:9876";
+    /**
+     * 本地
+     */
+    public static final String LOCAL_ROCKET_MQ_NAMESRV_ADDR = "localhost:9876";
 
     public static final String TOPIC_NAME = "test-topic";
 

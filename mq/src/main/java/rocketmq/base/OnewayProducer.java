@@ -17,7 +17,7 @@ public class OnewayProducer {
         // 1. 指定生产者组名
         DefaultMQProducer producer = new DefaultMQProducer("first_group");
         // 2. 指定 nameserver 地址
-        producer.setNamesrvAddr(ConfigConst.ROCKET_MQ_NAMESRV_ADDR);
+        producer.setNamesrvAddr(ConfigConst.REMOTE_ROCKET_MQ_NAMESRV_ADDR);
         // 3. 启动 producer
         producer.start();
         for (int i = 0; i < 10; i++) {

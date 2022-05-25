@@ -27,7 +27,7 @@ public class FilterConsumer {
     public static void main(String[] args) throws MQClientException {
         // 使用 tag 过滤
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("first_group");
-        consumer.setNamesrvAddr(ConfigConst.ROCKET_MQ_NAMESRV_ADDR);
+        consumer.setNamesrvAddr(ConfigConst.REMOTE_ROCKET_MQ_NAMESRV_ADDR);
         consumer.subscribe("topic_batch", "tag_batch");
         consumer.registerMessageListener(new MessageListenerConcurrently() {
 

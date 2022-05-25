@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class BatchProducer {
     public static void main(String[] args) throws InterruptedException, RemotingException, MQClientException, MQBrokerException {
         DefaultMQProducer producer = new DefaultMQProducer("first_group");
-        producer.setNamesrvAddr(ConfigConst.ROCKET_MQ_NAMESRV_ADDR);
+        producer.setNamesrvAddr(ConfigConst.REMOTE_ROCKET_MQ_NAMESRV_ADDR);
         producer.start();
         ArrayList<Message> list = Lists.newArrayList();
         Message msg1 = new Message("topic_batch", "tag_batch", ("batch_test_1").getBytes());

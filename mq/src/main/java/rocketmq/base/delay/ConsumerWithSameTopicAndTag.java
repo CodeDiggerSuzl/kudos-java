@@ -15,7 +15,7 @@ import rocketmq.constant.ConfigConst;
 public class ConsumerWithSameTopicAndTag {
     public static void main(String[] args) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("first_group");
-        consumer.setNamesrvAddr(ConfigConst.ROCKET_MQ_NAMESRV_ADDR);
+        consumer.setNamesrvAddr(ConfigConst.REMOTE_ROCKET_MQ_NAMESRV_ADDR);
         // 订阅 topic
         consumer.subscribe("topic_delay", "tag_delay_tag");
         // 设置消费负载均衡模式

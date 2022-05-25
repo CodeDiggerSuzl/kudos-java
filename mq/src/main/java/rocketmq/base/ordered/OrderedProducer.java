@@ -24,7 +24,7 @@ public class OrderedProducer {
      */
     public static void main(String[] args) throws MQClientException, RemotingException, InterruptedException, MQBrokerException {
         DefaultMQProducer producer = new DefaultMQProducer("ordered_group_id");
-        producer.setNamesrvAddr(ConfigConst.ROCKET_MQ_NAMESRV_ADDR);
+        producer.setNamesrvAddr(ConfigConst.REMOTE_ROCKET_MQ_NAMESRV_ADDR);
         producer.start();
         String[] tags = {"TagA", "TagB", "TagC"};
         List<OrderStep> orderSteps = OrderStep.buildOrders();

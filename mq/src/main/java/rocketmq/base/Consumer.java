@@ -24,7 +24,7 @@ public class Consumer {
      */
     public static void main(String[] args) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("first_group");
-        consumer.setNamesrvAddr(ConfigConst.ROCKET_MQ_NAMESRV_ADDR);
+        consumer.setNamesrvAddr(ConfigConst.REMOTE_ROCKET_MQ_NAMESRV_ADDR);
         // 订阅 topic
         consumer.subscribe("test_topic_name", "*");
         // 设置消费负载均衡模式
@@ -36,7 +36,7 @@ public class Consumer {
             for (MessageExt ext : msg) {
                 System.out.println(new String(ext.getBody()));
             }
-            // System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msg.toString());
+             System.out.printf("%s Receive New Messages: %s %n", Thread.currentThread().getName(), msg.toString());
             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         });
         consumer.start();

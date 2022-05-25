@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class Producer {
     public static void main(String[] args) throws MQClientException {
         TransactionMQProducer producer = new TransactionMQProducer("first_group");
-        producer.setNamesrvAddr(ConfigConst.ROCKET_MQ_NAMESRV_ADDR);
+        producer.setNamesrvAddr(ConfigConst.REMOTE_ROCKET_MQ_NAMESRV_ADDR);
         String[] tags = new String[]{"TagA", "TagB", "TagC"};
         // 设置消息事务的监听器
         producer.setTransactionListener(new TransactionListener() {
