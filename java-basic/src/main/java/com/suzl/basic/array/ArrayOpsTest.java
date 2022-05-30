@@ -22,21 +22,19 @@ public class ArrayOpsTest {
         System.out.println(result);
     }
 
+    /**
+     * 打印多维数组可以使用Arrays.deepToString()；
+     */
     @Test
-    /** 打印多维数组可以使用Arrays.deepToString()； */
     public void arrTestTest() {
         System.out.println(System.currentTimeMillis());
-        int[][] ns = {
-                {1, 2, 3, 4},
-                {5, 6, 7, 8},
-                {9, 10, 11, 12}
-        };
+        int[][] ns = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
 
         System.out.println(Arrays.deepToString(ns));
     }
 
     static class TempClass {
-        String  name;
+        String name;
         Integer age;
     }
 }

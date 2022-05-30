@@ -12,7 +12,9 @@ import java.lang.reflect.Proxy;
  */
 public class DynamicProxyTest {
     public static void main(String[] args) {
-        Greeting instance = (Greeting) Proxy.newProxyInstance(Greeting.class.getClassLoader(), new Class[]{Greeting.class}, new InvocationHandler() {
+        Greeting instance = (Greeting) Proxy.newProxyInstance(Greeting.class.getClassLoader(),
+                new Class[]{Greeting.class},
+                new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println(" ---- ");
