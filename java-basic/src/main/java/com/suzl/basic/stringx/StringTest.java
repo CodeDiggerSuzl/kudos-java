@@ -56,7 +56,23 @@ public class StringTest {
     public void replaceAllTest() {
         String s = "00:30,01:30|02:30,03:30";
         //  String 反向引用 在 :30 后加上 ":00"
-        System.out.println(s.replaceAll(":\\d{2}", "$0:00"));
+        // $0 $1
+        // *组是用括号划分的正则表达式，可以根据组的编号来引用某个组。组号为 0 表示整个表达式，组号 1 表示第一对括号扩起的组，以此类推。
+        // 再比如 A(B(C))D 有三个组：组 0 是 ABCD，组 1 是 BC，组 2 是 C，
+        System.out.println(s.replaceAll(":\\d{2}", "$0:00"));       // 00:30:00,01:30:00|02:30:00,03:30:00
+        System.out.println(s.replaceAll(":(\\d{2})", "$1"));        // 0030,0130|0230,0330 匹配出了 :30 然后把冒号替换成了 30, 正则还是很有趣的
+        System.out.println(s.replaceAll("\\d{2}:(\\d{2})", "$1"));  // 30,30|30,30
+    }
+
+    @Test
+    public void replaceAllTest2() {
+        String keyString = "[rc6]groupKeyCacheKey";
+        String cluster = keyString.substring(0, keyString.indexOf("]") + 1); // [rc6]
+        // [rc(.*)] 可以匹配出 [rc6] 整个串,$1:即第一个括号的内容就是 6, 就是用 6 替换 [rc6]
+        String afterReplace = cluster.replaceAll("\\[rc(.*)]", "$1");
+        System.out.printf("cluster = %s, afterReplace = %s \n", cluster, afterReplace);
+
+
     }
 
 }
