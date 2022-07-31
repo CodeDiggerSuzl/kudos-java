@@ -12,7 +12,6 @@ import org.junit.Test;
 @Slf4j
 public class StringTest {
     private static final String HIERARCHY_REGEX = "([0-9]|,|\\.)+";
-    private static final String EACH_HIERARCHY_REGEX = "[0-9]\\d*\\.?\\d*";
 
     @Test
     public void testRegex() {
@@ -49,8 +48,16 @@ public class StringTest {
                 "${tenantName}天气寒冷请您注意保暖和疫情防护!服务过程中戴好口罩.感谢接听祝您生活愉快!再见!";
         String after = s.replace("${tenantName}", "central park");
         System.out.println("after = " + after);
-
     }
+
+    @Test
+    public void replaceSpaceTest() {
+        String str = " 200";
+        // replace space of str
+        str = str.replaceAll("\\s+", "");
+        System.out.println("str = " + str);
+    }
+
 
     @Test
     public void replaceAllTest() {

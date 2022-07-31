@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 
-public class ChangeStringDemo {
+public class StringChangingTest {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         String s = new String("abc");
         Field value = s.getClass().getDeclaredField("value");
