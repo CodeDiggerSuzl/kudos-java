@@ -1,5 +1,6 @@
 package com.kudos.controller;
 
+import com.kudos.AopMark;
 import com.kudos.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -37,12 +38,13 @@ public class AppController {
      * 测试 com.suzl.allspring.spring 的缓存
      */
     @GetMapping("/testCache/{id}")
-    public String testCache(@PathVariable int id) {
+    @AopMark
+    private String testCache(@PathVariable int id) {
         return testService.testCache("str", id);
     }
 
     @RequestMapping("/testReqAndResp")
-    public String testReqAndResp(HttpServletResponse response, HttpServletRequest request) {
+    private String testReqAndResp(HttpServletResponse response, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         HttpSession session = request.getSession();
         response.addCookie(new Cookie("cookie", "now"));
