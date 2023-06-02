@@ -19,6 +19,7 @@
         <module>circuit-breaker</module>
         <module>orm</module>
         <module>book-reading-code</module>
+        <module>typical-model</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -106,6 +107,12 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>2.1-groovy-3.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
