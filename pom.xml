@@ -19,6 +19,7 @@
         <module>circuit-breaker</module>
         <module>orm</module>
         <module>book-reading-code</module>
+        <module>good_code</module>
         <module>typical-model</module>
     </modules>
     <parent>
@@ -101,7 +102,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>30.1-jre</version>
+            <version>30.1.1-jre</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>

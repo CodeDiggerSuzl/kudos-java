@@ -8,4 +8,5 @@ import lombok.Data;
 public class Coupon {
     private String expireTime;
     private String money;
+    private Long id;
 }

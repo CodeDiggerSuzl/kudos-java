@@ -1,10 +1,10 @@
 package com.suzl.guava;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.HashMultimap;
+import com.google.common.collect.*;
 import com.suzl.utils.PrintUtils;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,5 +27,30 @@ public class MultiMapTest {
         hashMultimap.put("1", 12);
         hashMultimap.put("1", "1");
         PrintUtils.pJ(hashMultimap.get("1"));
+    }
+
+    @Test
+    public void hashBasedTableTest() {
+        Table<String, String, Integer> table = HashBasedTable.create();
+        //存放元素
+        table.put("Hydra", "Jan", 20);
+        table.put("Hydra", "Feb", 28);
+
+        table.put("Trunks", "Jan", 28);
+        table.put("Trunks", "Feb", 16);
+
+        //取出元素
+        Integer dayCount = table.get("Hydra", "Feb");
+        System.out.println("dayCount = " + dayCount);
+    }
+
+    @Test
+    public void BiMapTest() {
+        HashBiMap<Object, Object> bm = HashBiMap.create();
+            List<Integer> coll = Lists.newArrayList();
+            Integer min = Collections.min(coll);
+            System.out.println(min);
+
+
     }
 }

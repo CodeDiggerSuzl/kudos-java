@@ -13,6 +13,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,6 +72,8 @@ public class RedisOpsTest {
             for (int i = 0; i < 20; i++) {
                 System.out.println(limiter.isActionAllowed("userid", "reply", 60, 5));
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

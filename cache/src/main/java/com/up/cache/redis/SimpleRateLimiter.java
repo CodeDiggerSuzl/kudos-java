@@ -4,6 +4,8 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Pipeline;
 import redis.clients.jedis.Response;
 
+import java.io.IOException;
+
 /**
  * 使用 redis 做简单限流 滑动窗口
  *
@@ -17,7 +19,7 @@ public class SimpleRateLimiter {
         this.jedis = jedis;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Jedis jedis = new Jedis();
         SimpleRateLimiter limiter = new SimpleRateLimiter(jedis);
         for (int i = 0; i < 20; i++) {
@@ -40,17 +42,17 @@ public class SimpleRateLimiter {
      * @param maxCount  最大允许的行为
      * @return 行为是否允许
      */
-    public boolean isActionAllowed(String userId, String actionKey, int period, int maxCount) {
+    public boolean isActionAllowed(String userId, String actionKey, int period, int maxCount) throws IOException {
         String key = String.format("hist:%s:%s", userId, actionKey);
         // 时间戳 保证唯一
         long nowTs = System.currentTimeMillis();
         Pipeline pipe = jedis.pipelined();
         pipe.multi();
         // 记录行为
-        pipe.zadd(key, nowTs, "" + nowTs);
+        pipe.zadd(key, nowTs, String.valueOf(nowTs));
         // nowTs 60 * 100 毫秒
         // 移除时间窗口之前的行为记录，剩下的都是时间窗口内的
-        pipe.zremrangeByScore(key, 0, nowTs - period * 1000);
+        pipe.zremrangeByScore(key, 0, nowTs - period * 1000L);
         // 获取窗口内的行为数量
         Response<Long> count = pipe.zcard(key);
         // 设置 zset 过期时间，避免冷用户持续占用内存

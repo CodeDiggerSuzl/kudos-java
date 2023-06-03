@@ -29,6 +29,17 @@ public class ThreadLocalTest {
         System.out.println(t1.get());
     }
 
+    // new threadlocal with init value
+
+    private static final ThreadLocal<String> t1 = new ThreadLocal<>();
+    @Test
+    public void threadLocalWithInitialTest() {
+        System.out.println(t1.get());
+        t1.set("hhj");
+        t1.remove();
+        System.out.println("t1.get() = " + t1.get());
+    }
+
     /**
      * 为了保证能释放ThreadLocal关联的实例，我们可以通过AutoCloseable接口配合try (resource) {...}结构，
      * 让编译器自动为我们关闭。例如，一个保存了当前用户名的ThreadLocal可以封装为一个UserContext对象：

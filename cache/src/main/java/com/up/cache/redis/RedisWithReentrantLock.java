@@ -1,7 +1,6 @@
 package com.up.cache.redis;
 
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.params.SetParams;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +31,8 @@ public class RedisWithReentrantLock {
     }
 
     private boolean _lock(String key) {
-        return jedis.set(key, "", new SetParams().nx().ex(5)) != null;
+        return true;
+        // return jedis.set(key, "", new SetParams().nx().ex(5)) != null;
     }
 
     private void _unlock(String key) {

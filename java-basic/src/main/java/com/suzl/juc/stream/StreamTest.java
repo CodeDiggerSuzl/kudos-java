@@ -6,6 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * 题目要求：一分钟内完成此题，只能用一行代码实现！
@@ -55,20 +58,26 @@ public class StreamTest {
 //    }
 
     public static void main(String[] args) {
-        Coupon c1 = new Coupon("20221221235959", "10.88");
-        Coupon c2 = new Coupon("20221121235959", "8.80");
-        ArrayList<Coupon> list = Lists.newArrayList(c2, c1);
-        list.sort(
-                Comparator.comparing(Coupon::getExpireTime, Comparator.nullsLast(Comparator.naturalOrder()))
-                        .thenComparing(Coupon::getMoney, (o1, o2) -> {
-                            if (StringUtils.isAnyBlank(o1, o2)) {
-                                return 0;
-                            }
-                            BigDecimal b1 = new BigDecimal(o1);
-                            BigDecimal b2 = new BigDecimal(o2);
-                            int i = b2.compareTo(b1);
-                            return i;
-                        }));
-        System.out.println(list);
+        Coupon c1 = new Coupon("20221221235959", "10.88", null);
+//        Coupon c2 = new Coupon("20221121235959", "8.80",2L);
+        ArrayList<Coupon> list = Lists.newArrayList(c1);
+//        list.sort(
+//                Comparator.comparing(Coupon::getExpireTime, Comparator.nullsLast(Comparator.naturalOrder()))
+//                        .thenComparing(Coupon::getMoney, (o1, o2) -> {
+//                            if (StringUtils.isAnyBlank(o1, o2)) {
+//                                return 0;
+//                            }
+//                            BigDecimal b1 = new BigDecimal(o1);
+//                            BigDecimal b2 = new BigDecimal(o2);
+//                            int i = b2.compareTo(b1);
+//                            return i;
+//                        }));
+
+        String collect = list.stream().map(Coupon::getId).filter(Objects::nonNull).map(String::valueOf).collect(Collectors.joining(","));
+        System.out.println(collect);
+
+
+        long l = TimeUnit.DAYS.toSeconds(30);
+        System.out.println(l);
     }
 }
