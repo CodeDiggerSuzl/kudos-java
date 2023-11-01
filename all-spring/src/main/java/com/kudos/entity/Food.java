@@ -4,6 +4,8 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * <p>Food</p>
  *
@@ -12,7 +14,36 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // "prototype"
-public class Food {
+//@Data
+
+public class Food implements Serializable {
     private String name;
-    private String price;
+
+    private String priceDetail;
+
+    private String description;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPriceDetail() {
+        return priceDetail;
+    }
+
+    public void setPriceDetail(String priceDetail) {
+        this.priceDetail = priceDetail;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

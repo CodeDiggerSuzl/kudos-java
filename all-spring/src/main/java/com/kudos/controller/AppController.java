@@ -1,13 +1,12 @@
 package com.kudos.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.kudos.AopMark;
+import com.kudos.entity.Food;
 import com.kudos.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -49,5 +48,18 @@ public class AppController {
         HttpSession session = request.getSession();
         response.addCookie(new Cookie("cookie", "now"));
         return "testReqAndResp";
+    }
+
+    /**
+     * 将 get mapping 在 URL 中的参数映射到对象中
+     * @param food food
+     * @param request http request
+     * @return json string
+     */
+    @GetMapping("/order/food")
+    private String orderFood(Food food, HttpServletRequest request) {
+        String jsonString = JSON.toJSONString(food);
+        System.out.println("JSON.toJSONString(food) = " + jsonString);
+        return jsonString;
     }
 }
